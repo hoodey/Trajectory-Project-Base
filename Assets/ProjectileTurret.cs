@@ -15,6 +15,7 @@ public class ProjectileTurret : MonoBehaviour
     [SerializeField] Transform barrelEnd;
     [SerializeField] LineRenderer line;
     [SerializeField] bool useLowAngle;
+    float t = 0.0f;
 
     List<Vector3> points = new List<Vector3>();
 
@@ -31,8 +32,24 @@ public class ProjectileTurret : MonoBehaviour
         TurnBase();
         RotateGun();
 
+        
+        
         if (Input.GetButtonDown("Fire1"))
+        {
             Fire();
+        }
+
+        if (Input.GetButton("Fire2"))
+        {
+            t = t + (0.2f/60.0f);
+            DisplayProjectilePath(t);
+            Debug.Log(t);
+        }
+
+        if (Input.GetButtonUp("Fire2"))
+        {
+            t = 0.0f;
+        }
     }
 
     void Fire()
@@ -98,5 +115,16 @@ public class ProjectileTurret : MonoBehaviour
         }
         else
             return null;
+    }
+
+    void DisplayProjectilePath(float t)
+    {
+        var pos1 = barrelEnd.position;
+        
+
+
+
+        line.SetPosition(0, pos1);
+
     }
 }
