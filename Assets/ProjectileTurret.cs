@@ -46,7 +46,11 @@ public class ProjectileTurret : MonoBehaviour
 
         if (Input.GetButtonUp("Fire2"))
         {
-            
+            var v = line.positionCount;
+            for (int i = 0; i < v; i++)
+            {
+                line.SetPosition(i, new Vector3(0, 0, 0));
+            }
         }
     }
 
